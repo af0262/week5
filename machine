@@ -1,0 +1,25 @@
+class CoinDispenser(object):
+
+        coins=[25, 10, 5, 1]
+        
+        def make_change(self, n):
+                self.n= n
+
+        def dispenser (n,c, f):
+                        if sum(f)==n:
+                            yield f
+                        elif sum(f)>n:
+                            pass
+                        elif c==[]:
+                            pass
+                        else:
+                            for c in dispenser(n,c[:],f+[c[0]]):
+                                yield c
+                            for c in dispenser(n,c[1:],f+[c[0]]):
+                                yield c
+
+        solutions =[s for s in dispenser(n,coins,[])]
+                
+        s=min(solutions,key=len)
+                #print(s)
+        return ([s.count(25), s.count(10), s.count(5),s.count(1)])  
